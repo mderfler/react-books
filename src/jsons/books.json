@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Alice's Adventures in Wonderland",
+    "author": "Lewis Carroll",
+    "publication": 1865,
+    "genre": "Children's ficiton"
+  },
+  {
+    "title": "Through the Looking Glass, and What Alice Found There",
+    "author": "Lewis Carroll",
+    "publication": 1871,
+    "genre": "Children's ficiton"
+  },
+  {
+    "title": "Dragons of Autumn Twilight",
+    "author":["Margaret Weis", "Tracy Hickman"],
+    "publication": 1984,
+    "genre": "Fantasy"
+  },
+  {
+    "title": "Dragons of Winter Night",
+    "author": ["Margaret Weis", "Tracy Hickman"],
+    "publication": 1985,
+    "genre": "Fantasy"
+  },
+  {
+    "title": "Dragons of Spring Dawn",
+    "author": ["Margaret Weis", "Tracy Hickman"],
+    "publication": 1986,
+    "genre": "Fantasy"
+  }
+]
