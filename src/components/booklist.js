@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import getBooks from '../services/index.jsx';
+import Author from './author';
 
 const Booklist = ({books})=>{
 
@@ -9,15 +10,30 @@ const Booklist = ({books})=>{
  
   const booklist = books.map((book) => {
     return (
-      <div key={book.id}>{book.title}</div>
+    <div>
+      <li key={book.id}>
+        {book.title}
+      <div key={book.id}>
+        genre: {book.genre}
+      </div>
+      <div key={Date.now()}>
+      <Author author={book.author} />
+      </div>
+      <div>
+        year: {book.publication}
+      </div>
+      </li>
+    </div>
     );
   });
 
 
 return (
+<div>
     <ul className="col-md-4 list-group">
       {booklist}
     </ul>
+</div>
   );
 
 }
