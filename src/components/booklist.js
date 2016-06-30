@@ -3,11 +3,11 @@ import getBooks from '../services/index.jsx';
 import Author from './author';
 
 const Booklist = ({books})=>{
-
+//console.log(search)
   if (books.length<1) {
-    return <div>Loading...</div>;
+    return <div>Searching...</div>;
   }
- 
+            
   const booklist = books.map((book) => {
     return (
     <div>
@@ -26,7 +26,6 @@ const Booklist = ({books})=>{
     </div>
     );
   });
-
 
 return (
 <div>

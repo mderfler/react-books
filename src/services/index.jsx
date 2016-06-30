@@ -1,6 +1,6 @@
 'use strict';
 var Deferred = require('promised-io/promise').Deferred;
-//var books = require('../jsons/books.json');
+
 var books = [
   {
     "title": "Alice's Adventures in Wonderland",
