@@ -4,68 +4,41 @@ import Booklist from './booklist';
 import SearchBar from './searchbar';
 import getBooks from '../services/index.jsx';
 
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { books: [] };
+    }
 
-var App = React.createClass({
-  getInitialState: function() {
-    return {books: []};
-  },
-  componentDidMount: function() {
-    this.fetchBooks();
-    
-  },
-  fetchBooks: function(){
-    var array = [];
-    getBooks.getBooks().then(function(data){
-                
-                    for (var i = data.length - 1; i >= 0; i--) {
-                        array.push(data[i])
-                    }
-                }).then(
-                    this.setState({books: array})
-                )
-  },
-   bookSearch: function(term){
-    console.log(term)
-  },
+    componentDidMount() {
+        this.fetchBooks();
+    }
 
-  render: function() {
-    return (
-      <div>
-        <SearchBar onSearchTermChange={this.bookSearch}/>
-        <Booklist books={this.state.books} />
-      </div>
-          );
-  }
-})
+    fetchBooks() {
+        var array = [];
+        getBooks.getBooks().then(function(data){
 
-// class App extends Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             books: []
-//         };
-//         this.findBooks();
-// }
+            for (var i = data.length - 1; i >= 0; i--) {
+                array.push(data[i])
+            }
 
-//  findBooks() {
-//     var array = [];
-//     getBooks.getBooks().then(function(data){
-                
-//                     for (var i = data.length - 1; i >= 0; i--) {
-//                         array.push(data[i])
-//                     }
-//                 })
-//     this.state.books.push(array);
-// }
+        }).then(function(data) {
+            this.setState({books: array});
+        }.bind(this))
+     }
 
-//     render() {
-//         return (
-//             <div>
-//              Hello from App in component folder
-//             <Booklist books={this.state.books[0]} />
-//             </div>
-//         );
-//     }
-// }
+    bookSearch (term){
+        console.log(term)
+    }
+
+    render() {
+        return (
+            <div>
+             <SearchBar onSearchTermChange={this.bookSearch}/>
+            <Booklist books={this.state.books} />
+            </div>
+        );
+    }
+}
 
 export default App;
