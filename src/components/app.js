@@ -28,18 +28,9 @@ class App extends Component {
         }.bind(this))
      }
 
-    bookSearch (term){
-        if(term){
-            this.foundBooks(term);
-        }else{
-            return this.state.books;
-        }
-    }
-
     foundBooks(term){
         term = term.toString().toLowerCase().trim();
-        if (term && term !==""){
-        //filter logic; then setState of searchBooks
+
         var result = [];
             for (var i = this.state.books.length - 1; i >= 0; i--) {
                if (this.state.books[i].title.toLowerCase().indexOf(term)>-1){
@@ -58,16 +49,13 @@ class App extends Component {
                 result.push(this.state.books[i])
                }
             }
-            this.setState({searchBooks: result})
-          }else{
-            this.setState({searchBooks: this.state.books})
-          }             
+            this.setState({searchBooks: result})           
     }
 
     render() {
         return (
             <div>
-                <SearchBar onSearchTermChange={this.bookSearch.bind(this)}/>
+                <SearchBar onSearchTermChange={this.foundBooks.bind(this)}/>
                 <Booklist books={this.state.searchBooks} />
             </div>
         );
