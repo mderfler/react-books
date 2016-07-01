@@ -10,7 +10,7 @@ class App extends Component {
                         searchBooks: [] };
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.fetchBooks();
     }
 
