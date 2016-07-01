@@ -45,7 +45,7 @@ class App extends Component {
                else if (typeof this.state.books[i].author === "string" && this.state.books[i].author.toLowerCase().indexOf(term)>-1){
                 result.push(this.state.books[i])
                }
-               else if (typeof this.state.books[i].author === "object" && this.state.books[i].author.join("").toLowerCase().indexOf(term)>-1){
+               else if (typeof this.state.books[i].author === "object" && this.state.books[i].author.join(", ").toLowerCase().indexOf(term)>-1){
                 result.push(this.state.books[i])
                }
             }
