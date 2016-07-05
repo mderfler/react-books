@@ -18,7 +18,6 @@ class App extends Component {
     }
 
     fetchBooks() {
-        var array = [];
         getBooks.getBooks().then(
             function(data) {
                 this.setState({books: data, searchBooks: data});
