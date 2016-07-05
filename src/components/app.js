@@ -8,23 +8,22 @@ class App extends Component {
         super(props);
         this.state = { books: [],
                         searchBooks: [] };
+        this.foundBooks = this.foundBooks.bind(this);
+        this.fetchBooks = this.fetchBooks.bind(this);
     }
 
-    componentWillMount() {
+    componentWillMount() {  
         this.fetchBooks();
     }
 
     fetchBooks() {
         var array = [];
         getBooks.getBooks().then(function(data){
-
             for (var i = data.length - 1; i >= 0; i--) {
                 array.push(data[i])
             }
-
         }).then(function(data) {
-            this.setState({books: array});
-            this.setState({searchBooks: array});
+            this.setState({books: array, searchBooks: array});
         }.bind(this))
      }
 
@@ -55,7 +54,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <SearchBar onSearchTermChange={this.foundBooks.bind(this)}/>
+                <SearchBar onSearchTermChange={this.foundBooks}/>
                 <Booklist books={this.state.searchBooks} />
             </div>
         );

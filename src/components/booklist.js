@@ -10,13 +10,13 @@ const Booklist = ({books})=>{
             
   const booklist = books.map((book) => {
     return (
-    <div>
-      <li key={book.id}>
+    <div key={book.id}>
+      <li>
         {book.title}
-      <div key={book.id}>
+      <div>
         genre: {book.genre}
       </div>
-      <div key={Date.now()}>
+      <div>
       <Author author={book.author} />
       </div>
       <div>
