@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import SearchBar from './searchbar';
 import Booklist from './booklist';
 import getBooks from '../services/index.jsx';
+import _ from 'lodash';
 
 class App extends Component {
     constructor(props) {
@@ -18,37 +19,39 @@ class App extends Component {
 
     fetchBooks() {
         var array = [];
-        getBooks.getBooks().then(function(data){
-            for (var i = data.length - 1; i >= 0; i--) {
-                array.push(data[i])
-            }
-        }).then(function(data) {
-            this.setState({books: array, searchBooks: array});
-        }.bind(this))
+        getBooks.getBooks().then(
+            function(data) {
+                this.setState({books: data, searchBooks: data});
+                }.bind(this)
+        );
      }
 
     foundBooks(term){
         term = term.toString().toLowerCase().trim();
+        var results = [];
+        for (var obj in this.state.books) {
+            var bookObj = this.state.books[obj]; //this is a book object
+         
+            for (var prop in bookObj) {
+                var property = bookObj[prop];
 
-        var result = [];
-            for (var i = this.state.books.length - 1; i >= 0; i--) {
-               if (this.state.books[i].title.toLowerCase().indexOf(term)>-1){
-                result.push(this.state.books[i])
-               }
-               else if (this.state.books[i].publication.toString().indexOf(term)>-1){
-                result.push(this.state.books[i])
-               }
-               else if (this.state.books[i].genre.toLowerCase().indexOf(term)>-1){
-                result.push(this.state.books[i])
-               }
-               else if (typeof this.state.books[i].author === "string" && this.state.books[i].author.toLowerCase().indexOf(term)>-1){
-                result.push(this.state.books[i])
-               }
-               else if (typeof this.state.books[i].author === "object" && this.state.books[i].author.join(", ").toLowerCase().indexOf(term)>-1){
-                result.push(this.state.books[i])
-               }
+                if (typeof property === 'object') {
+                    for (var author in property) { 
+                      if(property[author].toLowerCase().indexOf(term)>-1){
+                        results.push(bookObj);
+                      }     
+                    }
+                }
+
+                if (property.toString().toLowerCase().indexOf(term)>-1) {
+                   results.push(bookObj);
+                }
             }
-            this.setState({searchBooks: result})           
+        }
+
+        var bookArray = _.uniqBy(results,'id');
+
+        this.setState({searchBooks: bookArray})           
     }
 
     render() {
