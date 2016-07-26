@@ -10,7 +10,7 @@ class App extends Component {
         this.state = { books: [],
                         searchBooks: [] };
         this.foundBooks = this.foundBooks.bind(this);
-        this.fetchBooks = this.fetchBooks.bind(this);
+       // this.fetchBooks = this.fetchBooks.bind(this);
     }
 
     componentWillMount() {  
@@ -54,6 +54,7 @@ class App extends Component {
     }
 
     render() {
+        console.log(this);
         return (
             <div>
                 <SearchBar onSearchTermChange={this.foundBooks}/>
